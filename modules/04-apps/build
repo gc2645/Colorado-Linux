@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# test if the script is started by root user. If not, exit
+  if [ "0$UID" -ne 0 ]; then
+     echo "Only root can run $(basename $0)"; exit 1
+  fi
+
+echo ""
+echo "Installing Desktop Applications..."
+
+# Install Applications
+#apt-get update -qq
+apt-get install -qq -y \
+        chromium \
+	galculator \
+        transmission \
+	xarchiver xdg-utils libgconf-2-4 \
+        vlc 
+
+apt-get install -y -t stretch-backports remmina  
+
+
+echo "Copying Files..."
+(cd rootcopy && cp --parents -avfr * /)
+
+for x in $(ls /home/)
+do
+	cp -avr /root/.config/ /home/$x/
+	chown -R $x:$x /home/$x
+done
+

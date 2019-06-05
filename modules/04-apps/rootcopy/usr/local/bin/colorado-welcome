@@ -1,0 +1,25 @@
+#!/bin/sh
+
+EDITOR=mousepad
+
+yad --form --title="Welcome to Colorado-Linux!" --height=300 --width=300 \
+--center --window-icon=/usr/share/colorado/Colorado-Flag.png \
+--borders=10 --no-buttons \
+--text="<span font_weight='bold' font='18' color='#4A90D9'>                      Welcome, and thank you for your interest in Colorado-Linux!</span> 
+
+Thank you for giving Colorado-Linux a try! MiyoLinux has one main philosophy...to deliver a minimal and base system that will allow the user to <span font_weight='bold'>Make It Your Own</span>.  Apart from some basic tools, what goes on your system is entirely up to you! Thanks again, have fun, and enjoy yourself!
+
+The Live User Notes and Release Notes both contain information to help you in this live session and after installation. They are located in the Documents folder of the file manager. However, you can easily access them by clicking on <span font_weight='bold'>Live User Notes</span> and <span font_weight='bold'>Release Notes</span>. The Live User Notes will be deleted after installation; however, the Release Notes will remain on the installed system. If you decide to install Colorado-Linux, please take time soon after to read over the Release Notes.
+
+Colorado-Linux uses the US keyboard layout by default; however, you can change the keyboard layout in the live session by clicking on <span font_weight='bold'>Change Keyboard Layout</span>. When the application opens, find your desired layout, click on it, then click OK. The system will then adopt your layout.
+
+Also, you can connect to your network by clicking on <span font_weight='bold'>Network Connections</span>. Wired connections should connect automatically. See the Live User Notes for more information on connecting to a Wireless Network.
+
+Finally, if you want to jump right in, you can install the system straight from here by clicking on <span font_weight='bold'>Install Colorado-Linux</span>. However, if you would prefer to explore MiyoLinux further, the installer can also be found in the <span font_weight='bold'>System</span> category of the menu.
+" \
+--columns=5 \
+--field="  Live User Notes!applications-office!Live User Notes":fbtn "$EDITOR $HOME/Documents/Live-User-Notes" \
+--field="  Release Notes!applications-office!Colorado-Linux Release Notes":fbtn "$EDITOR $HOME/Documents/Release-Notes" \
+--field="  Change Keyboard Layout!input-keyboard!Change the keyboard layout":fbtn "/usr/bin/miyo-keyboard" \
+--field="  Network Connections!network-wireless!Connect to a wired or wireless network":fbtn "cmst -d" \
+--field="  Install Colorado-Linux!gtk-save!Install MiyoLinux onto your computer":fbtn "/usr/bin/refractainstaller-wrapper.sh" \

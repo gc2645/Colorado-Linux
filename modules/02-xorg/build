@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# test if the script is started by root user. If not, exit
+  if [ "0$UID" -ne 0 ]; then
+     echo "Only root can run $(basename $0)"; exit 1
+  fi
+
+echo ""
+echo "Installing Xorg..."
+
+echo "Install Xorg, xinit and Drives"
+#apt-get update -qq
+apt-get install -qq --yes \
+        xdotool \
+	xinit \
+	xserver-xorg \
+	xserver-xorg-input-all \
+        xserver-xorg-input-synaptics \
+        xserver-xorg-video-all \
+        xserver-xorg-video-intel \
+        xterm
+
+apt-get install -y jwm
+
+echo "Copying Files..."
+(cd rootcopy && cp --parents -avfr * /)
+
+
+

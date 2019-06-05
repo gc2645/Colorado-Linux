@@ -1,0 +1,69 @@
+#!/bin/bash
+
+# test if the script is started by root user. If not, exit
+  if [ "0$UID" -ne 0 ]; then
+     echo "Only root can run $(basename $0)"; exit 1
+  fi
+
+echo "Configuring APT Repositories..."
+# Configure APT Repositories
+sed -i 's/main$/main contrib non-free/' /etc/apt/sources.list
+echo "" >> /etc/apt/sources.list
+echo "deb http://ftp.debian.org/debian stretch-backports main contrib non-free" >> /etc/apt/sources.list
+
+echo "Updating apt..."
+	apt-get update -qq 
+
+echo "Checking for Upgrades.."
+	apt-get upgrade -qq -y
+
+echo "Installing Basic Tools..."
+apt-get install -qq -y --no-install-recommends \
+        bzip2 \
+        bzip2 \
+        ca-certificates \
+        dosfstools \
+	dvd+rw-tools \
+        file \
+        git \
+        gpm \
+	hdparm \
+        htop \
+	less \
+	lsof \
+        man \
+        netcat \
+	net-tools \
+        openssh-server \
+        openssl \
+        pm-utils \
+        psmisc \
+	rfkill \
+	rsync \
+	sdparm \
+	software-properties-common \
+        sshfs \
+	sudo \
+	traceroute \
+        tree \
+        unzip \
+        usb-modeswitch \
+        vim \
+        wicd \
+	wicd-curses \
+        wireless-tools \
+	wpasupplicant \
+	xz-utils \
+	yad \
+        zip
+
+echo "Adding Colorado Login Banner to /root/.bashrc"
+echo "cat /etc/.banner" >> /root/.bashrc
+
+echo "Copying Files..."
+(cd rootcopy && cp --parents -afrv * /)
+
+echo "Updating GRUB to use old style device names (eth0, wlan0)"
+#sed -i 's/GRUB_CMDLINE_LINUX=""/GRUB_CMDLINE_LINUX="net.ifnames=0 biosdevname=0"/' /etc/default/grub
+update-grub
+

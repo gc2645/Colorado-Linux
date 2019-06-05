@@ -1,0 +1,258 @@
+#!/bin/bash
+
+#  updated on Sun May  5 07:47:42 MDT 2019
+#  version 0.1
+
+#  This program is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 2 of the License, or
+#  (at your option) any later version.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+
+function help_text() {
+	less 	<<-EOF
+Welcome to Colorado Linux Menu Based Installer Tool.
+Colorado Linux is a custom Linux distribution based on Ubuntu 18.04.  It provides Backgrounds and other Images from Colorado Wildlife and Scenery.  It can be build from the command line, remastered and/or installed from ISO images.  Prepackaged ISO's include Minimalist, Base Desktop and Full Desktop Distributions
+
+HOME SCREEN
+Colorado Linux Instaler Tool's home screen is split into two parts: 
+The upper part focuses on installing Colorado Linux Modules.  These modules install and configure the core of Colorado Linux and include configuration and images.  The lower part provides options to selectively install other applications.  Choose an option by entering its number and pressing [Enter].
+
+0 - EXIT
+"clear && exit"
+This will exit Colorado Linux Installer and clears your terminal.
+
+00 - INFORMATION
+Display this information page.
+
+1- COLORADO LINUX BASE
+Configures APT Repositories, Installs core linux toolset, Configures GRUB and other core components.
+
+2- XORG ENVIRONMENT
+Installs xorg, xinit and hardware drivers required for graphical environment.
+
+3- JWM LIGHTWEIGHT DESKTOP ENVIRONMENT
+Installs the JWM along with gui tools for managing hardware software settings.
+
+4- FULL DESKTOP ENVIRONMENT
+Installs a custom XFCE4 desktop complete with Colorado Linux images and tools.
+
+5- BASIC APPLICATIONS
+Installs web browser, calculator, vnc client, bit-torrent client and other basic desktop applications.
+
+6- EDIT START JWM
+This option is to edit the Start settings (in ~/.jwm/start). To edit the Start is used mousepad editor.
+
+7- EDIT THEME JWM
+This option is to edit the Theme settings (in ~/.jwm/theme). To edit the Theme is used mousepad editor.
+
+8- EDIT KEYS JWM
+This option is to edit the Keys settings (in ~/.jwm/keys). To edit the Keys is used mousepad editor.
+
+9- EDIT GROUPS JWM
+This option is to edit the Groups settings (in ~/.jwm/groups). To edit the Groups is used mousepad editor.
+
+10- EDIT PREFERENCES JWM
+This option is to edit the Preferences settings (in ~/.jwm/preferences). To edit the Preferences is used mousepad editor.
+
+11- EDIT JWMRC
+This option is to edit the jwmrc settings (in ~/.jwmrc). To edit the jwmrc is used mousepad editor.
+
+12- COMMANDS MANUAL JWM
+General commands manual of the Joe's Window Manager (JWM). JWM is a window manager for X11 Window System.
+
+13- VERSION JWM
+"jwm -v"
+Display version information JWM.
+
+14- HOMEPAGE JWM
+Visit and know the website of JWM.
+
+15- EDIT CONKY
+Conky a lightweight system monitor.
+This option is to edit the Conky settings ((in ~/.conkyrc). To edit the Conky is used mousepad editor.
+
+16- EDIT DUNST
+Dunst is a lightweight replacement for the notification-daemons provided by most desktop environments.
+This option is to edit the Dunst settings (in ~/.config/dunst/dunstrc). To edit the Dunst is used mousepad editor.
+
+17- EDIT GMRUN
+Gmrun (Gnome Completion-Run) is an lightweight application launcher similar to GNOME Run, Application Finder, KRunner, etc. 
+This option is to edit the Gmrun settings (in ~/.gmrunrc). To edit the Gmrun is used mousepad editor.
+
+18- EDIT BASHRC
+Bash (Bourne-again Shell) is a command-line shell/programming language by the GNU Project.
+
+19- EDIT GTK2
+GTK+, or the GIMP Toolkit, is a multi-platform toolkit for creating graphical user interfaces. Offering a complete set of widgets, GTK+ is suitable for projects ranging from small one-off tools to complete application suites. Version 2.
+
+20- EDIT GTK3
+GTK+, or the GIMP Toolkit, is a multi-platform toolkit for creating graphical user interfaces. Offering a complete set of widgets, GTK+ is suitable for projects ranging from small one-off tools to complete application suites. Version 3.
+
+21- EDIT XRESOURCES
+Xresources is a user-level configuration dotfile, typically located at ~/.Xresources.
+
+22- EDIT LightDM
+LightDM is a cross-desktop display manager. A display manager is a daemon that: runs display servers (e.g. X) where necessary, runs greeters to allow users to pick which user account and session type to use, etc.
+
+23- EDIT OBLOGOUT
+Oblogout is an optional, configurable logout script that presents a graphical interface (i.e. buttons) to cancel, logout, restart, shutdown, suspend.
+
+To exit this information page, press "q".
+	EOF
+}
+
+# set colors
+RED='\e[41m'
+BLUE='\e[44m'
+ORANGE='\e[46m'
+NC='\e[0m'
+    while true; do
+    clear
+    echo ""
+    echo -e "                    $NC Colorado Linux Menu Based Installer $NC "
+    echo ""
+    echo -e " ┌─────────────────────────────────────────────────────────────────────────┐"
+    echo -e " │                                                                         │"
+    echo -e " │                         Colorado Linux Modules                          │"
+    echo -e " │                                                                         │"
+    echo -e " │  $NC  1  $NC  Install Colorado Linux Base  $NC  2  $NC  Install Xorg and xinit      │"
+    echo -e " │  $NC  3  $NC  Install Lightweight Desktop  $NC  4  $NC  Install Full Desktop        │"
+    echo -e " │  $NC  5  $NC  Install Basic Applications   $NC  6  $NC  (Empty)                     │"
+    echo -e " │                                                                         │"
+    echo -e " │-------------------------------------------------------------------------│"
+    echo -e " │                                                                         │"
+    echo -e " │                      Colorado Linux Applications                        │"
+    echo -e " │                                                                         │"
+    echo -e " │  $NC  7  $NC  Install Clementine Music     $NC  8  $NC  Install Shotwell Photos     │"
+    echo -e " │  $NC  9  $NC  Install LibreOffice          $NC 10  $NC  Install Skype for Linux     │"
+    echo -e " │  $NC 11  $NC  Install Spotify Client       $NC 12  $NC  Install VirtualBox          │"
+    echo -e " │  $NC 13  $NC  (Empty)                      $NC 14  $NC  (Empty)                     │"
+    echo -e " │                                                                         │"
+       echo " └─────────────────────────────────────────────────────────────────────────┘" 
+    echo ""
+    echo -e "        $NC Select a number and press [Enter] - 0 Exit - 00 Information$NC"
+    echo ""
+    read choix
+    case $choix in
+        1)
+            echo
+            echo "Not Available at this Time"
+            echo ""
+            echo -e "$NC Operation complete...  Press [Enter] to Continue $NC"
+            read
+            ;;
+        2)
+            echo
+            echo "Not Available at this Time"
+            echo ""
+            echo -e "$NC Operation complete...  Press [Enter] to Continue $NC"
+            read
+            ;;
+        3)
+            echo
+            echo "Not Available at this Time"
+            echo ""
+            echo -e "$NC Operation complete...  Press [Enter] to Continue $NC"
+            read
+            ;;
+	4)
+            echo
+            echo "Not Available at this Time"
+            echo ""
+            echo -e "$NC Operation complete...  Press [Enter] to Continue $NC"
+            read
+            ;;
+	5)
+            echo ""
+            echo "Not Available at this Time"
+            echo ""
+            echo -e "$NC Operation complete...  Press [Enter] to Continue $NC"
+            read
+            ;;
+	6)
+            echo
+            echo "Not Available at this Time"
+            echo ""
+            echo -e "$NC Operation complete...  Press [Enter] to Continue $NC"
+            read
+            ;;
+	7)
+            echo
+            . ./clementine
+            echo ""
+            echo -e "$NC Operation complete...  Press [Enter] to Continue $NC"
+            read
+            ;;
+	8)
+            echo ""
+            . ./shotwell
+            echo ""
+            echo -e "$NC Operation complete...  Press [Enter] to Continue $NC"
+            read
+            ;;
+	9)
+            echo ""
+            . ./libreoffice
+            echo ""
+            echo -e "$NC Operation complete...  Press [Enter] to Continue $NC"
+            read 
+            ;;
+	10)
+            echo ""
+            . ./skype 
+            echo ""
+            echo -e "$NC Operation complete...  Press [Enter] to Continue $NC"
+            read
+            ;;
+	11)
+            echo ""
+            . ./spotify
+            echo ""
+            echo -e "$NC Operation complete...  Press [Enter] to Continue $NC"
+            read
+            ;;
+	12)
+            echo ""
+            . ./virtualbox
+	    echo ""
+            echo -e "$NC Operation complete...  Press [Enter] to Continue $NC"
+            read
+            ;;
+	13)
+            echo
+            echo "Not Available at this Time"
+            echo ""
+            echo -e "$NC Operation complete...  Press [Enter] to Continue $NC"
+            read
+            ;;
+	14)
+            echo ""
+            echo "Not Available at this Time"
+            echo ""
+            echo -e "$NC Operation complete...  Press [Enter] to Continue $NC"
+            read
+            ;;        
+        0)
+            clear && exit
+            read
+            ;;
+        00)
+            echo
+            help_text
+            echo
+            ;;
+        *)
+            echo -e "$NC ::WRONG OPTION:: $NC"
+            echo "Wait and try again later..."
+            echo ""
+            sleep 3
+            clear
+            ;;
+    esac
+    done
+fi

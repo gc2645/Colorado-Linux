@@ -1,0 +1,17 @@
+#!/bin/sh
+
+EDITOR=mousepad
+
+yad --form --title="Colorado-Linux Application Installer" --height=200 --width=200 \
+--center --window-icon=/usr/share/colorado/Colorado-Flag.png \
+--borders=10 --no-buttons \
+--text="<span font_weight='bold' font='18' color='#4A90D9'>    Install Additional Desktop Applications</span>" \
+--columns=2 \
+--text-align=left \
+--field="Clementine Music Player!clementine!Install Clementine":fbtn "./clementine.sh" \
+--field="LibreOffice Suite      !libreoffice!Install LibreOffice":fbtn "./libreoffice.sh" \
+--field="Shotwell Photo Library !shotwell!Install Shotwell":fbtn "./shotwell.sh" \
+--field="Skype for Linux        !skpye!Install Skype":fbtn "./skype.sh" \
+--field="Spotify Client         !spotify!Install Spotify":fbtn "./spotify.sh" \
+--field="Oracle VirtualBox      !virtualbox!Install Virtualbox":fbtn "./virtualbox.sh" 
+

@@ -1,0 +1,10 @@
+ 
+! Set dpi
+Xft.dpi:	 96
+
+! Fix cut&paste for xterm
+XTerm*vt100.translations: #override \
+    Shift Ctrl <Key> C: copy-selection(CLIPBOARD) \n\
+    Shift Ctrl <Key> V: insert-selection(CLIPBOARD)
+! to commit xterm changes above
+! xrdb -merge ~/.Xresources

@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# test if the script is started by root user. If not, exit
+  if [ "0$UID" -ne 0 ]; then
+     echo "Only root can run $(basename $0)"; exit 1
+  fi
+
+apt-get update 
+apt-get install --yes \
+        gtk2-engines-xfce \
+        libxfce4ui-utils \
+	pulseaudio \
+	pulseaudio-utils \
+        slim \
+	wicd-gtk \
+        xfwm4 \
+        xfce4-appfinder \
+        xfce4-panel \
+        xfce4-settings \
+        xfce4-taskmanager \
+        xfce4-terminal \
+	xfce4-pulseaudio-plugin \
+        xfdesktop4 
+
+apt-get install -y thunar xfce4-session xfce4-power-manager
+
+dpkg -i fonts-smc-chilanka_1.3.1-1_all.deb
+
+(cd rootcopy && cp --parents -avfr * /)
+
+for x in $(ls /home/)
+do
+	cp -avr /root/.config/ /home/$x/
+	chown -R $x:$x /home/$x
+done
+
